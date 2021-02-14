@@ -2,7 +2,7 @@ import handler from "../libs/handler";
 import dynamoDb from "../libs/dynamoDb";
 import { v5 as uuidv5 } from "uuid";
 
-const ONPAPER_CALENDAR = "8c38558f-aa78-4623-93b4-52ea1cb0ab1a";
+const ONPAPER_CALENDAR = process.env.uniqueId;
 const main = handler(async (event, context) => {
   const data = JSON.parse(event.body);
   const params = {
