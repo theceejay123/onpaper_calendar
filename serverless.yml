@@ -22,7 +22,7 @@ provider:
   #
   environment:
     tableName: agenda
-    uniqueId: 89f46c53-6d08-44e7-883f-80f53e47e750
+    uniqueId: ${env:SECRET_UNIQUE_ID}
     #  SAMPLE_ENV_VAR: ${env:SAMPLE_ENV_VAR}
   iamRoleStatements:
     - Effect: Allow
@@ -44,7 +44,7 @@ functions:
           path: agendas
           method: post
           cors:
-            origin: '*'
+            origin: "*"
             headers:
               - Content-Type
               - X-Amz-Date
@@ -61,7 +61,7 @@ functions:
           path: agendas/by_id/{id}
           method: get
           cors:
-            origin: '*'
+            origin: "*"
             headers:
               - Content-Type
               - X-Amz-Date
@@ -78,7 +78,7 @@ functions:
           path: agendas/by_date/{date}
           method: get
           cors:
-            origin: '*'
+            origin: "*"
             headers:
               - Content-Type
               - X-Amz-Date
@@ -95,7 +95,7 @@ functions:
           path: agendas
           method: get
           cors:
-            origin: '*'
+            origin: "*"
             headers:
               - Content-Type
               - X-Amz-Date
@@ -112,7 +112,7 @@ functions:
           path: agendas/{id}
           method: delete
           cors:
-            origin: '*'
+            origin: "*"
             headers:
               - Content-Type
               - X-Amz-Date
@@ -129,7 +129,7 @@ functions:
           path: agendas/{id}
           method: put
           cors:
-            origin: '*'
+            origin: "*"
             headers:
               - Content-Type
               - X-Amz-Date
@@ -145,7 +145,6 @@ functions:
   #     - http:
   #         path: hello
   #         method: get
-
 # # Create our resources with separate CloudFormation templates
 # resources:
 #   # API Gateway Errors
