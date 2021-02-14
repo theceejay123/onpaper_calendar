@@ -1,3 +1,8 @@
 {
-  "body": "{\"title\":\"angelos first gym day 2021\",\"details\":\"this is angelos first day in the gym since 6 months ago\", \"date\":\"2021-02-21\", \"time\":\"10:10 PM\"}"
+  "body": "{\"title\":\"angelos first gym day 2021\",\"details\":\"this is angelos first day in the gym since 6 months ago\", \"date\":\"2021-02-21\", \"time\":\"10:10 PM\"}",
+  "requestContext": {
+    "identity": {
+      "cognitoIdentityId": "USER-SUB-1234"
+    }
+  }
 }
