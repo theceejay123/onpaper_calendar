@@ -5,9 +5,9 @@ const main = handler(async (event, context) => {
   const params = {
     TableName: process.env.tableName,
     IndexName: "schedDateIndex",
-    KeyConditionExpression: "schedDate = :schedDate",
+    KeyConditionExpression: "schedDate = :date",
     ExpressionAttributeValues: {
-      ":schedDate": "2021-02-21",
+      ":date": event.pathParameters.date,
     },
   };
 

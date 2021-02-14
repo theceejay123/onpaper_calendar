@@ -33,7 +33,7 @@ provider:
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
         - dynamodb:DescribeTable
-      Resource: "arn:aws:dynamodb:us-east-1:*:*" # This will be changed soon to our specific resource
+      Resource: "arn:aws:dynamodb:ca-central-1:*:*" # This will be changed soon to our specific resource
 
 functions:
   create:
@@ -46,13 +46,13 @@ functions:
     handler: handlers/get.main
     events:
       - http:
-          path: agendas/{id}
+          path: agendas/by_id/{id}
           method: get
   list:
     handler: handlers/list.main
     events:
       - http:
-          path: agendas
+          path: agendas/by_date/{date}
           method: get
   fetch:
     handler: handlers/fetch.main
@@ -60,6 +60,18 @@ functions:
       - http:
           path: agendas
           method: get
+  delete:
+    handler: handlers/delete.main
+    events:
+      - http:
+          path: agendas/{id}
+          method: delete
+  update:
+    handler: handlers/update.main
+    events:
+      - http:
+          path: agendas/{id}
+          method: put
   # hello:
   #   handler: handlers/handler.hello
   #   events:

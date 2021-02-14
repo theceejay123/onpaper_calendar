@@ -4,7 +4,7 @@ import dynamoDb from "../libs/dynamoDb";
 
 const ONPAPER_CALENDAR = "8c38558f-aa78-4623-93b4-52ea1cb0ab1a";
 
-export const main = handler(async (event, context) => {
+const main = handler(async (event, context) => {
   const data = JSON.parse(event.body);
   const params = {
     TableName: process.env.tableName,
@@ -24,3 +24,5 @@ export const main = handler(async (event, context) => {
 
   return params.Item;
 });
+
+export { main };
