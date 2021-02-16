@@ -13,6 +13,7 @@ const main = handler(async (event, context) => {
       schedTime: data.time,
       title: data.title,
       details: data.details,
+      name: data.name,
       createdAt: Date.now(),
       updatedAt: Date.now(),
     },
