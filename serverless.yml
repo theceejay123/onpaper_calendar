@@ -146,6 +146,6 @@ functions:
   #         path: hello
   #         method: get
 # # Create our resources with separate CloudFormation templates
-# resources:
-#   # API Gateway Errors
-#   - ${file(resources/api-gateway-errors.yml)}
+resources:
+  # API Gateway Errors
+  - ${file(resources/api-gateway-errors.yml)}
