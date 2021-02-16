@@ -7,7 +7,7 @@ const main = handler(async (event, context) => {
     IndexName: "schedDateIndex",
     KeyConditionExpression: "schedDate = :date",
     ExpressionAttributeValues: {
-      ":date": event.pathParameters.date,
+      ":date": decodeURIComponent(event.pathParameters.date),
     },
   };
 
