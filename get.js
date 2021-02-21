@@ -1,5 +1,5 @@
-import handler from "../libs/handler";
-import dynamoDb from "../libs/dynamoDb";
+import handler from "./libs/handler";
+import dynamoDb from "./libs/dynamoDb";
 
 const main = handler(async (event, context) => {
   const params = {
@@ -10,8 +10,12 @@ const main = handler(async (event, context) => {
     },
   };
 
-  await dynamoDb.delete(params);
-  return { status: true };
+  const result = await dynamoDb.get(params);
+  if (!result.Item) {
+    throw new Error("Item not found.");
+  }
+
+  return result.Item;
 });
 
 export { main };
