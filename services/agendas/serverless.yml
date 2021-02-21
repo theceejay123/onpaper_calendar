@@ -40,7 +40,7 @@ provider:
 
 functions:
   create:
-    handler: handlers/create.main
+    handler: create.main
     events:
       - http:
           path: agendas
@@ -57,7 +57,7 @@ functions:
             allowCredentials: false
           authorizer: aws_iam
   get:
-    handler: handlers/get.main
+    handler: get.main
     events:
       - http:
           path: agendas/by_id/{id}
@@ -74,7 +74,7 @@ functions:
             allowCredentials: false
           authorizer: aws_iam
   list:
-    handler: handlers/list.main
+    handler: list.main
     events:
       - http:
           path: agendas/by_date/{date}
@@ -91,7 +91,7 @@ functions:
             allowCredentials: false
           authorizer: aws_iam
   fetch:
-    handler: handlers/fetch.main
+    handler: fetch.main
     events:
       - http:
           path: agendas
@@ -108,7 +108,7 @@ functions:
             allowCredentials: false
           authorizer: aws_iam
   delete:
-    handler: handlers/delete.main
+    handler: delete.main
     events:
       - http:
           path: agendas/{id}
@@ -125,7 +125,7 @@ functions:
             allowCredentials: false
           authorizer: aws_iam
   update:
-    handler: handlers/update.main
+    handler: update.main
     events:
       - http:
           path: agendas/{id}
