@@ -1,0 +1,6 @@
+{
+  "name": "agendas-infra",
+  "stage": "dev",
+  "region": "ca-central-1",
+  "lint": true
+}
