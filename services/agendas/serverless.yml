@@ -10,6 +10,13 @@ plugins:
   - serverless-offline
   - serverless-dotenv-plugin # Load .env as environment variables
 
+custom:
+  # Our stage is based on what is passed in when running serverless
+  # commands. Or falls back to what we have set in the provider section
+  stage: ${opt:stage, self:provider.stage}
+  # Name of the SST app that's deploying our infrastructure
+  sstApp: ${self:custom.stage}-agendas-infra
+
 provider:
   name: aws
   runtime: nodejs12.x
@@ -21,7 +28,7 @@ provider:
   # commit your .env.
   #
   environment:
-    tableName: agenda
+    tableName: !ImportValue "${self:custom.sstApp}-TableName"
 
     #  SAMPLE_ENV_VAR: ${env:SAMPLE_ENV_VAR}
   iamRoleStatements:
@@ -35,8 +42,7 @@ provider:
         - dynamodb:DeleteItem
         - dynamodb:DescribeTable
       Resource:
-        - "arn:aws:dynamodb:${self:provider.region}:331054046169:table/${self:provider.environment.tableName}" # This will be changed soon to our specific resource
-        - "arn:aws:dynamodb:${self:provider.region}:331054046169:table/${self:provider.environment.tableName}/index/*"
+        - !ImportValue "${self:custom.sstApp}-TableArn"
 
 functions:
   create:
@@ -147,7 +153,10 @@ functions:
   #     - http:
   #         path: hello
   #         method: get
-# # Create our resources with separate CloudFormation templates
+
+# Create our resources with separate CloudFormation templates
 resources:
   # API Gateway Errors
   - ${file(resources/api-gateway-errors.yml)}
+  # Cognito Identity Pool Policy
+  - ${file(resources/cognito-policy.yml)}
