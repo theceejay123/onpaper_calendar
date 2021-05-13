@@ -43,7 +43,7 @@ provider:
         - dynamodb:DescribeTable
       Resource:
         - !ImportValue "${self:custom.sstApp}-TableArn"
-        - Fn::ImportValue: !Sub "${self:custom.sstApp}-TableArn/index/*"
+        - !ImportValue "${self:custom.sstApp}-TableArn"
 
 functions:
   create:

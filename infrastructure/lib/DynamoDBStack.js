@@ -26,6 +26,11 @@ class DynamoDBStack extends sst.Stack {
       value: table.tableArn,
       exportName: app.logicalPrefixedName("TableArn"),
     });
+
+    new CfnOutput(this, "TableArnSecondaryIndex", {
+      value: table.tableArn.concat("/index/*"),
+      exportName: app.logicalPrefixedName("TableArnSecondaryIndex"),
+    });
   }
 }
 
