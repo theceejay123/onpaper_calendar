@@ -1,5 +1,4 @@
 import { CfnOutput } from "@aws-cdk/core";
-import * as iam from "@aws-cdk/aws-iam";
 import * as cognito from "@aws-cdk/aws-cognito";
 import * as sst from "@serverless-stack/resources";
 import CognitoAuthRole from "./CognitoAuthRole";
@@ -8,7 +7,6 @@ export default class CognitoStack extends sst.Stack {
   constructor(scope, id, props) {
     super(scope, id, props);
 
-    const { bucketArn } = props;
     const app = this.node.root;
 
     const userPool = new cognito.UserPool(this, "UserPool", {
@@ -35,17 +33,6 @@ export default class CognitoStack extends sst.Stack {
     const authenticatedRole = new CognitoAuthRole(this, "CognitoAuthRole", {
       identityPool,
     });
-
-    authenticatedRole.role.addToPolicy(
-      // IAM policy granting users permission to a specific folder in the S3 bucket
-      new iam.PolicyStatement({
-        actions: ["s3:*"],
-        effect: iam.Effect.ALLOW,
-        resources: [
-          bucketArn + "/private/${cognito-identity.amazonaws.com:sub}/*",
-        ],
-      })
-    );
 
     // Export values
     new CfnOutput(this, "UserPoolId", {
